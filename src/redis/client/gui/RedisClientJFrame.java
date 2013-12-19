@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.text.JTextComponent;
+import javax.swing.JTextPane;
 
 public class RedisClientJFrame extends JFrame {
 
@@ -33,6 +33,7 @@ public class RedisClientJFrame extends JFrame {
     public void init() {
         this.initFrame();
         this.initMenu();
+        this.initJText();
     }
 
     private void initMenu() {
@@ -45,7 +46,9 @@ public class RedisClientJFrame extends JFrame {
     }
 
     private void initJText() {
-       
+        JTextPane jpane = new JTextPane();
+        jpane.enableInputMethods(false);
+        this.add(jpane);
     }
 
     public static RedisClientJFrame getInstance() {
