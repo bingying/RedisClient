@@ -46,8 +46,8 @@ public class RedisClientJFrame extends JFrame {
     public void init() {
         this.initFrame();
         this.initMenu();
-        //        this.initJTextArea();
-        //        this.initCommandJText();
+        this.initJTextArea();
+        this.initCommandJText();
         initTabed();
         this.pack();
     }
@@ -56,7 +56,7 @@ public class RedisClientJFrame extends JFrame {
         JTabbedPane tabPane = new JTabbedPane();
         tabPane.setTabPlacement(JTabbedPane.BOTTOM);
         tabPane.addTab("首页", new JPanel());
-        tabPane.add("开发环境", new JPanel());
+        tabPane.add("新建", new JPanel());
         container.add(tabPane);
     }
 
