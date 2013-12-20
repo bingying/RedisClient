@@ -47,8 +47,8 @@ public class RedisClientJFrame extends JFrame {
         this.initFrame();
         this.initMenu();
         this.initJTextArea();
-        this.initCommandJText();
-        initTabed();
+        //        this.initCommandJText();
+        //        initTabed();
         this.pack();
     }
 

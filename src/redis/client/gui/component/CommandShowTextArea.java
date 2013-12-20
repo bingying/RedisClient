@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JTextArea;
 
 import redis.client.model.CommandShow;
 
-public class CommandShowTextArea extends JTextArea implements KeyListener {
+public class CommandShowTextArea extends JTextArea implements KeyListener, MouseListener {
 
     private static final long serialVersionUID = 1608059716141587156L;
 
@@ -27,7 +29,6 @@ public class CommandShowTextArea extends JTextArea implements KeyListener {
         jpane.setFocusable(true);
         jpane.setEditable(false);
         jpane.append("...Redis-GUI running...\n");
-        jpane.setFocusable(false);
         return jpane;
     }
 
@@ -48,6 +49,36 @@ public class CommandShowTextArea extends JTextArea implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        // TODO Auto-generated method stub
 
     }
 
