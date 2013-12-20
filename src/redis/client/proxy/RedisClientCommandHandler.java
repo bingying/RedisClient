@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 import redis.client.CommandRelationMapFactory;
+import redis.client.JedisWrapInterface;
 import redis.client.JedisWrapper;
 import redis.client.RedisClient;
 import redis.clients.jedis.ShardedJedisPool;
@@ -11,7 +12,7 @@ import redis.common.StringUtils;
 
 public class RedisClientCommandHandler {
 
-    private JedisWrapper jedisWrapper;
+    private JedisWrapInterface jedisWrapper;
 
     private Map<String, Method> commandMap;
 

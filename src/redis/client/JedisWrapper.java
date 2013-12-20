@@ -86,4 +86,37 @@ public class JedisWrapper implements JedisWrapInterface {
         }
         return false;
     }
+
+    @Override
+    public long ttl(String key) {
+        ShardedJedis shardedJedis = pool.getResource();
+        try {
+            return shardedJedis.ttl(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -2;
+    }
+
+    @Override
+    public long del(String key) {
+        ShardedJedis shardedJedis = pool.getResource();
+        try {
+            return shardedJedis.del(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public long expireAt(String key, String seconds) {
+        ShardedJedis shardedJedis = pool.getResource();
+        try {
+            return shardedJedis.expireAt(key, Long.valueOf(seconds));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

@@ -10,7 +10,7 @@ public class CommandRelationMapFactory {
 
     public static Map<String, Method> buildRelationMap() {
         Map<String, Method> methodMap = new HashMap<String, Method>();
-        Class<? extends JedisWrapper> jedisClass = JedisWrapper.class;
+        Class<? extends JedisWrapInterface> jedisClass = JedisWrapInterface.class;
         Method[] methods = jedisClass.getDeclaredMethods();
         for (Method tmp : methods) {
             Relation relation = tmp.getAnnotation(Relation.class);
