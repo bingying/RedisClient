@@ -1,4 +1,4 @@
-package redis.client;
+package redis.client.command;
 
 import java.util.Collection;
 import java.util.Set;
@@ -118,5 +118,14 @@ public class JedisWrapper implements JedisWrapInterface {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public String help() {
+        StringBuilder builder = new StringBuilder();
+        for (String tmp : commands) {
+            builder.append(tmp + "\n");
+        }
+        return builder.toString();
     }
 }

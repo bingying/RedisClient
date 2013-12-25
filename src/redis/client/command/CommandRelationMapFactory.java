@@ -1,4 +1,4 @@
-package redis.client;
+package redis.client.command;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

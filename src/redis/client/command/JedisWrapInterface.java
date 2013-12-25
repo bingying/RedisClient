@@ -1,8 +1,11 @@
-package redis.client;
+package redis.client.command;
 
 import redis.client.annotation.Relation;
 
 public interface JedisWrapInterface {
+
+    String[] commands = new String[] { "keys", "get", "set", "expire", "exists", "ttl", "del",
+            "expireat", "help" };
 
     @Relation("keys")
     public String keys(String pattern);
@@ -27,4 +30,7 @@ public interface JedisWrapInterface {
 
     @Relation("expireat")
     public long expireAt(String key, String seconds);
+
+    @Relation("help")
+    public String help();
 }

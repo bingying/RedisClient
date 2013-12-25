@@ -1,7 +1,10 @@
 package redis.client.gui.component;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -11,7 +14,8 @@ import javax.swing.JTextArea;
 
 import redis.client.model.CommandShow;
 
-public class CommandShowTextArea extends JTextArea implements KeyListener, MouseListener {
+public class CommandShowTextArea extends JTextArea implements KeyListener, MouseListener,
+        FocusListener {
 
     private static final long serialVersionUID = 1608059716141587156L;
 
@@ -28,6 +32,7 @@ public class CommandShowTextArea extends JTextArea implements KeyListener, Mouse
         jpane.setLineWrap(true);
         jpane.setFocusable(true);
         jpane.setEditable(false);
+        jpane.addFocusListener(jpane);
         jpane.append("...Redis-GUI running...\n");
         return jpane;
     }
@@ -38,7 +43,8 @@ public class CommandShowTextArea extends JTextArea implements KeyListener, Mouse
             Action action = (Action) e.getSource();
             CommandShow show = action.action();
             this.append("::<-__->:: " + show.getCommand() + "\n");
-            this.append(show.getResult() + "\n");
+            this.setCaretPosition(this.getText().length());
+            this.append(show.getResult());
         }
     }
 
@@ -54,7 +60,6 @@ public class CommandShowTextArea extends JTextArea implements KeyListener, Mouse
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
 
     }
 
@@ -78,6 +83,18 @@ public class CommandShowTextArea extends JTextArea implements KeyListener, Mouse
 
     @Override
     public void mouseExited(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+        this.setCaretPosition(this.getText().length());
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
         // TODO Auto-generated method stub
 
     }

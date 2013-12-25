@@ -1,6 +1,7 @@
 package redis.client.gui;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 
@@ -9,12 +10,11 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 
 import redis.client.gui.component.CommandShowTextArea;
 import redis.client.gui.component.CommandText;
+import redis.client.gui.component.RTabbedPane;
 
 public class RedisClientJFrame extends JFrame {
 
@@ -30,6 +30,18 @@ public class RedisClientJFrame extends JFrame {
 
     private RedisClientJFrame() {
         container = this.getContentPane();
+
+    }
+
+    public void init() {
+
+        this.initFrame();
+        container.add(new RTabbedPane());
+        //        this.initMenu();
+        //        this.initJTextArea();
+        //        this.initCommandJText();
+        //        //        initTabed();
+        this.pack();
     }
 
     private void initFrame() {
@@ -37,27 +49,10 @@ public class RedisClientJFrame extends JFrame {
         this.setBounds(300, 300, 500, 500);
         this.setIconImage(icon.getImage());
         this.setMinimumSize(new Dimension(500, 500));
-        this.setAlwaysOnTop(true);
+        this.setAlwaysOnTop(false);
         this.setVisible(true);
-        this.setLayout(new BorderLayout());
+        this.setLayout(new CardLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    public void init() {
-        this.initFrame();
-        this.initMenu();
-        this.initJTextArea();
-        //        this.initCommandJText();
-        //        initTabed();
-        this.pack();
-    }
-
-    public void initTabed() {
-        JTabbedPane tabPane = new JTabbedPane();
-        tabPane.setTabPlacement(JTabbedPane.BOTTOM);
-        tabPane.addTab("首页", new JPanel());
-        tabPane.add("新建", new JPanel());
-        container.add(tabPane);
     }
 
     private void initMenu() {
@@ -72,6 +67,7 @@ public class RedisClientJFrame extends JFrame {
     private void initJTextArea() {
         commandShowTextArea = CommandShowTextArea.getInstance();
         JScrollPane jScrollPane = new JScrollPane(commandShowTextArea);
+        jScrollPane.setWheelScrollingEnabled(true);
         container.add(jScrollPane, BorderLayout.CENTER);
     }
 

@@ -3,10 +3,10 @@ package redis.client.proxy;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import redis.client.CommandRelationMapFactory;
-import redis.client.JedisWrapInterface;
-import redis.client.JedisWrapper;
 import redis.client.RedisClient;
+import redis.client.command.CommandRelationMapFactory;
+import redis.client.command.JedisWrapInterface;
+import redis.client.command.JedisWrapper;
 import redis.clients.jedis.ShardedJedisPool;
 import redis.common.StringUtils;
 
@@ -40,16 +40,14 @@ public class RedisClientCommandHandler {
 
         line = line.trim();
         String[] args = StringUtils.split(line);
-        if (args.length < 2) return "";
-
         Method method = commandMap.get(args[0].toUpperCase());
         if (method == null) {
-            return "无效的命令 " + args[0];
+            return "无效的命令:::" + args[0] + "\n";
         }
         args = getArgs(args);
         int paramLe = method.getGenericParameterTypes().length;
         if (!(args.length == paramLe)) {
-            return "无效的命令 " + line;
+            return "缺少参数:::" + line + "\n";
         }
 
         Object obj = method.invoke(jedisWrapper, args);
