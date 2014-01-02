@@ -31,7 +31,7 @@ public class RedisClient {
 
         List<JedisShardInfo> list = new ArrayList<JedisShardInfo>();
         list.add(je1);
-        list.add(je2); 
+        list.add(je2);
         list.add(je3);
         list.add(je4);
         pool = new ShardedJedisPool(poolConfig, list);

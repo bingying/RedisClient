@@ -50,7 +50,7 @@ public class RedisClientCommandHandler {
             return "缺少参数:::" + line + "\n";
         }
 
-        Object obj = method.invoke(jedisWrapper, args);
+        Object obj = method.invoke(jedisWrapper, (Object[]) args);
 
         return obj == null ? "" : obj.toString();
     }

@@ -1,6 +1,5 @@
 package redis.client.gui;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -10,10 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
 
-import redis.client.gui.component.CommandShowTextArea;
-import redis.client.gui.component.CommandText;
+import redis.client.gui.component.RConfigPanel;
+import redis.client.gui.component.ROperatePanel;
 import redis.client.gui.component.RTabbedPane;
 
 public class RedisClientJFrame extends JFrame {
@@ -24,9 +22,7 @@ public class RedisClientJFrame extends JFrame {
 
     private Container container = null;
 
-    private CommandText commandText = null;
-
-    private CommandShowTextArea commandShowTextArea = null;
+    private RTabbedPane tabbedPane = null;
 
     private RedisClientJFrame() {
         container = this.getContentPane();
@@ -34,13 +30,11 @@ public class RedisClientJFrame extends JFrame {
     }
 
     public void init() {
-
         this.initFrame();
-        container.add(new RTabbedPane());
-        //        this.initMenu();
-        //        this.initJTextArea();
-        //        this.initCommandJText();
-        //        //        initTabed();
+        this.initMenu();
+        this.add(new RConfigPanel());
+        //        tabbedPane = new RTabbedPane();
+        //        container.add(tabbedPane);
         this.pack();
     }
 
@@ -55,6 +49,18 @@ public class RedisClientJFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    public void addPanel(ROperatePanel rOperatePanel) {
+        tabbedPane.addTab(rOperatePanel.getTitle(), rOperatePanel);
+    }
+
+    public void removePanel(ROperatePanel rOperatePanel) {
+        tabbedPane.remove(rOperatePanel);
+    }
+
+    public void removePanel(int index) {
+        tabbedPane.remove(index);
+    }
+
     private void initMenu() {
         JMenuBar menuBar = new JMenuBar();
         this.setJMenuBar(menuBar);
@@ -62,19 +68,6 @@ public class RedisClientJFrame extends JFrame {
         menuBar.add(start);
         start.add(new JMenuItem("新建"));
         start.add(new JMenuItem("历史"));
-    }
-
-    private void initJTextArea() {
-        commandShowTextArea = CommandShowTextArea.getInstance();
-        JScrollPane jScrollPane = new JScrollPane(commandShowTextArea);
-        jScrollPane.setWheelScrollingEnabled(true);
-        container.add(jScrollPane, BorderLayout.CENTER);
-    }
-
-    private void initCommandJText() {
-        commandText = CommandText.getInstance();
-        commandText.addKeyListener(commandShowTextArea);
-        container.add(commandText, BorderLayout.SOUTH);
     }
 
     public static RedisClientJFrame getInstance() {
